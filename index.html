@@ -3,48 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Teddy Day - Open</title>
+  <title>Happy Teddy Day 🧸</title>
+
   <style>
     body {
       margin: 0;
-      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffd6e8, #fff1c1);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #ffd6e8, #fff1c1);
-      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
     }
-    .container {
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      max-width: 320px;
       text-align: center;
+      z-index: 2;
+      animation: fadeIn 1.2s ease;
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     h1 {
-      color: #d63384;
-      font-size: 2.5em;
-      margin-bottom: 30px;
+      color: #ff5c8a;
+      font-size: 26px;
+      margin-bottom: 10px;
     }
-    a {
-      display: inline-block;
-      padding: 15px 40px;
-      background: linear-gradient(135deg, #ff6b9d, #ffd6e8);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-size: 1.2em;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    a:hover {
+
+    img:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      margin-top: 12px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    /* Fullscreen teddy */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .overlay img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 20px;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>🧸 Happy Teddy Day 🧸</h1>
-    <a href="happy/happy.html">Click Here to Open</a>
+
+  <!-- Hearts -->
+  <script>
+    const hearts = ["💖", "💕", "💗", "💘", "💝"];
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      heart.style.fontSize = 16 + Math.random() * 20 + "px";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="card">
+    <h1>Happy Teddy Day 🧸💖</h1>
+    <img src="./assects/WhatsApp Image 2026-02-10 at 12.04.23 PM.jpeg" alt="Cute Teddy" onclick="openTeddy()">
+    <p>Thanks for coming into my life, my wifeee 🥰💞</p>
   </div>
+
+  <!-- Big Teddy View -->
+  <div class="overlay" id="overlay" onclick="closeTeddy()">
+    <img src="./assects/WhatsApp Image 2026-02-10 at 12.04.23 PM.jpeg" alt="Big Teddy">
+  </div>
+
+  <script>
+    function openTeddy() {
+      document.getElementById("overlay").style.display = "flex";
+    }
+
+    function closeTeddy() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+
 </body>
 </html>
